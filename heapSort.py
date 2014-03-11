@@ -1,5 +1,6 @@
 __author__ = 'qdiao'
 
+import heapq
 
 def parent(i):
     return (i - 1)/2
@@ -48,8 +49,18 @@ def heap_sort(A):
         heap_size -= 1
         max_heapify(A, 0, heap_size)
 
+def heap_sort2(A):
+    heapq.heapify(A)
+    heap = []
+    while A:
+        heap.append(heapq.heappop(A))
+    A[:] = heap
+    return A
+
 if __name__ == "__main__":
 
     A = [5, 13, 2, 25, 7, 17, 20, 8, 4]
     heap_sort(A)
     print A
+    A = [5, 13, 2, 25, 7, 17, 20, 8, 4]
+    print heap_sort2(A)
