@@ -36,7 +36,23 @@ def build_max_heap(A):
     heap_size = len(A)
     for i in range((len(A)-1)/2, -1, -1):
         max_heapify(A, i, heap_size)
-    #return A
+
+
+def heap_increase_key(A, i, key):
+    try:
+        if key < A[i]:
+            raise BaseException
+        else:
+            A[i] = key
+            print parent(i)
+            while i > 0 and A[parent(i)] < A[i]:
+                tmp = A[parent(i)]
+                A[parent(i)] = A[i]
+                A[i] = tmp
+                i = parent(i)
+    except BaseException as e:
+        print "Error: key must be large than A[i]"
+
 
 
 def heap_sort(A):
@@ -64,3 +80,9 @@ if __name__ == "__main__":
     print A
     A = [5, 13, 2, 25, 7, 17, 20, 8, 4]
     print heap_sort2(A)
+    A = [5, 13, 2, 25, 7, 17, 20, 8, 4]
+    build_max_heap(A)
+    print A
+    A.append(-100)
+    heap_increase_key(A, len(A)-1, 10)
+    print A
