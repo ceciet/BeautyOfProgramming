@@ -53,7 +53,15 @@ def heap_increase_key(A, i, key):
     except BaseException as e:
         print "Error: key must be large than A[i]"
 
-
+def heap_delete(A, i):
+    if i < len(A):
+        heap_size = len(A)
+        A[i] = A[len(A)-1]
+        heap_size -= 1
+        max_heapify(A, i, heap_size)
+        return A[:heap_size]
+    else:
+        return None
 
 def heap_sort(A):
     build_max_heap(A)
@@ -86,3 +94,4 @@ if __name__ == "__main__":
     A.append(-100)
     heap_increase_key(A, len(A)-1, 10)
     print A
+    print heap_delete(A, 3)
